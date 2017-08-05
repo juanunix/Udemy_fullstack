@@ -20,6 +20,7 @@
   "author": "Christian Panadero",
   "license": "ISC",
   "dependencies": {
+    "materialize-css": "^0.100.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
