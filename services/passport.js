@@ -10,23 +10,22 @@ passport.deserializeUser((userId, done) => User
   .then(u => done(null, u))
 )
 
+const authCallback = (accessToken, refreshToken, profile, done) => {
+  const byGoogleID = { googleID: profile.id }
+  const createUserIfNotExists = existingUser =>
+    existingUser ? Promise.resolve(existingUser) : new User(byGoogleID).save()
+
+  User
+    .findOne(byGoogleID)
+    .then(createUserIfNotExists)
+    .then(user => done(null, user))
+}
+
 passport.use(
   new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: '/auth/google/callback',
     proxy: true
-  }, (accessToken, refreshToken, profile, done) => {
-    User
-      .findOne({ googleID: profile.id })
-      .then(existingUser => {
-        if (existingUser) {
-          done(null, existingUser)
-        } else {
-          new User({ googleID: profile.id })
-            .save()
-            .then(u => done(null, u))
-        }
-      })
-  })
+  }, authCallback)
 )

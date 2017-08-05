@@ -9,7 +9,9 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "server": "nodemon index.js",
+    "client": "(cd client && yarn start)",
+    "dev": "concurrently 'yarn run server' 'yarn run client'",
     "standard": "standard",
     "standard:fix": "standard --fix"
   },
@@ -23,6 +25,7 @@
     "passport-google-oauth20": "^1.0.0"
   },
   "devDependencies": {
+    "concurrently": "^3.5.0",
     "nodemon": "^1.11.0",
     "standard": "*"
   }
