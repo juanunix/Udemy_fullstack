@@ -18,11 +18,13 @@
   "author": "Christian Panadero",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "cookie-session": "^2.0.0-beta.2",
     "express": "^4.15.3",
     "mongoose": "^4.11.5",
     "passport": "^0.3.2",
-    "passport-google-oauth20": "^1.0.0"
+    "passport-google-oauth20": "^1.0.0",
+    "stripe": "^4.23.2"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
