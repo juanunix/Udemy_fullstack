@@ -11,9 +11,11 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "(cd client && yarn start)",
+    "client:build": "(cd client && yarn install && yarn build)",
     "dev": "concurrently 'yarn run server' 'yarn run client'",
     "standard": "standard",
-    "standard:fix": "standard --fix"
+    "standard:fix": "standard --fix",
+    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false yarn client:build"
   },
   "author": "Christian Panadero",
   "license": "ISC",
