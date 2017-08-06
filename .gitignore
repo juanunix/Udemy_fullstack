@@ -131,3 +131,4 @@ tags
 
 dev.js
 .tern-project
+.env.*
