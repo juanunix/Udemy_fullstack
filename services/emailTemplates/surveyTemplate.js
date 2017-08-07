@@ -1,11 +1,14 @@
+const keys = require('../../config/keys')
 module.export = (survey) => {
   return `
   <html>
     <body>
-      I want your input, please answer the following question:
+      <p>I want your input, please answer the following question:</p>
       <p>${survey.body}</p>
-      <a href="http://localhost:3000">Yes</a>
-      <a href="http://localhost:3000">No</a>
+      <p>
+        <a href="${keys.redirectDomain}/api/surveys/thanks">Yes</a>
+        <a href="${keys.redirectDomain}/api/surveys/thanks">No</a>
+      </p>
     </body>
   </html>
   `
