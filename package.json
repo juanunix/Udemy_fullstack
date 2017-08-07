@@ -15,7 +15,7 @@
     "dev": "concurrently 'yarn run server' 'yarn run client'",
     "standard": "standard",
     "standard:fix": "standard --fix",
-    "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false yarn client:build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn client:build"
   },
   "author": "Christian Panadero",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "mongoose": "^4.11.5",
     "passport": "^0.3.2",
     "passport-google-oauth20": "^1.0.0",
+    "sendgrid": "^5.2.0",
     "stripe": "^4.23.2"
   },
   "devDependencies": {
