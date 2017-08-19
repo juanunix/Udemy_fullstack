@@ -11,22 +11,24 @@ module.exports = app => {
 
   app.post('/api/surveys', requireLogin, requireCredits, (req, res) => {
     const { title, subject, body, recipients } = req.body
+    const user = req.user
     const survey = new Survey({
       title,
       body,
       subject,
       recipients: recipients.split(',').map(email => ({ email: email.trim() })),
-      _user: req.user.id,
+      _user: user.id,
       dateSent: Date.now()
     })
+    const substractOneCredit = () => {
+      user.credits -= 1
+      user.save()
+    }
 
-    const mailer = new Mailer(survey, surveyTemplate(survey))
-    mailer.send()
-      .then(op => survey.save())
-      .then(_ => {
-        req.user.credits -= 1
-        req.user.save()
-      })
+    new Mailer(survey, surveyTemplate(survey))
+      .send()
+      .then(_ => survey.save())
+      .then(substractOneCredit)
       .then(res.send)
       .catch(res.status(422).send)
   })
